@@ -1,46 +1,34 @@
-package com.yeo.develop.stepcounter
+package com.yeo.develop.stepcounter.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.yeo.develop.stepcounter.ui.theme.StepCounterTheme
+import androidx.activity.viewModels
+import com.yeo.develop.stepcounter.activities.screens.StepCounterScreen
+import com.yeo.develop.stepcounter.activities.viewmodel.MainViewModel
+import com.yeo.develop.stepcounter.services.StepCounterService
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            StepCounterTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+            StepCounterScreen(
+                startButtonClicked = {
+                    startService(Intent(this, StepCounterService::class.java))
+                },
+                stopButtonClicked = {
+                    stopService(Intent(this, StepCounterService::class.java))
                 }
-            }
+            )
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    StepCounterTheme {
-        Greeting("Android")
+    override fun onResume() {
+        super.onResume()
+        viewModel.checkLocalVariableCurrentTime()
     }
 }

@@ -3,8 +3,8 @@ package com.yeo.develop.stepcounter.modules
 import android.content.Context
 import androidx.room.Room
 import com.yeo.develop.stepcounter.ApplicationConstants
-import com.yeo.develop.stepcounter.database.StepDao
-import com.yeo.develop.stepcounter.database.StepDatabase
+import com.yeo.develop.stepcounter.database.steps.StepDao
+import com.yeo.develop.stepcounter.database.steps.StepDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

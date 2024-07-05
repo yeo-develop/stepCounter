@@ -8,4 +8,6 @@ object ApplicationConstants {
     const val DATABASE_NAME = "STEP_DATABASE"
     const val TABLE_NAME = "DAILY_STEP_DATA"
     const val ENTITY_DATE_FORMAT = "yyyy-MM-dd"
+
+    const val DATASTORE_NAME = "APP_DATA_STORE_STEP_COUNTER"
 }
