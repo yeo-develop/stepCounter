@@ -1,4 +1,4 @@
-package com.yeo.develop.stepcounter.database
+package com.yeo.develop.stepcounter.database.steps
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
