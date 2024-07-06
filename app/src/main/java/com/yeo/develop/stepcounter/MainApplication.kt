@@ -1,12 +1,10 @@
 package com.yeo.develop.stepcounter
 
 import android.app.Application
-import android.content.Intent
 import android.util.Log
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.WorkManager
-import com.yeo.develop.stepcounter.services.StepCounterService
 import com.yeo.develop.stepcounter.worker.AppWorkerFactory
 import dagger.hilt.EntryPoint
 import dagger.hilt.EntryPoints

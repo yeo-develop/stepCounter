@@ -8,11 +8,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.normal.TedPermission
 import com.yeo.develop.stepcounter.activities.screens.StepCounterScreen
-import com.yeo.develop.stepcounter.activities.viewmodel.StepCounterViewModel
 import com.yeo.develop.stepcounter.services.StepCounterService
 import com.yeo.develop.stepcounter.worker.MidnightWorkerScheduler
 import dagger.hilt.android.AndroidEntryPoint

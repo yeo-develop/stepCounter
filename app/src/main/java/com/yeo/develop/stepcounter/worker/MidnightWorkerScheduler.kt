@@ -6,17 +6,10 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 import com.yeo.develop.stepcounter.worker.alarm.AlarmReceiver
 import dagger.hilt.android.qualifiers.ApplicationContext
-import java.time.Duration
 import java.time.LocalDateTime
-import java.time.LocalTime
 import java.time.ZoneId
-import java.time.temporal.ChronoUnit
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 

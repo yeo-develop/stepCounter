@@ -3,16 +3,12 @@ package com.yeo.develop.stepcounter.worker.alarm
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.ExistingWorkPolicy
-import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.yeo.develop.stepcounter.worker.MidnightWorker
 import com.yeo.develop.stepcounter.worker.MidnightWorkerScheduler
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
