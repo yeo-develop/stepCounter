@@ -115,7 +115,12 @@ fun StepCounterScreen(
                     verticalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "목표 달성까지\n$remainingSteps 걸음 남았어요!",
+                        text =
+                        if(remainingSteps <= 0 ) {
+                            "오늘 걸음을 전부 달성했어요!"
+                        }else {
+                            "목표 달성까지\n$remainingSteps 걸음 남았어요!"
+                        },
                         fontWeight = FontWeight.Bold,
                         color = PrimaryBlue,
                         fontSize = 24.sp
