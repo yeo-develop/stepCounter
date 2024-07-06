@@ -86,4 +86,7 @@ dependencies {
 
     implementation ("androidx.datastore:datastore-preferences:1.1.1")
 
+    implementation ("io.github.ParkSangGwon:tedpermission-normal:3.3.0")
+
+
 }
