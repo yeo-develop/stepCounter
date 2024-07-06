@@ -3,14 +3,14 @@
 ## 개요
 사용자의 걸음 수를 기록하는 앱입니다. 
 Jetpack Compose를 사용하여 UI를 구성하였으며, `TedPermission` 라이브러리를 사용하여 권한을 관리합니다. 
-앱은 매일 자정에 걸음 수를 초기화하고, 목표 걸음 수에 도달할 때까지 남은 걸음 수를 표시합니다.
+앱은 매일 자정에 걸음 수를 초기화하고, 목표 걸음 수와 남은 걸음 수, 현재 걸은 걸음 수를 표시합니다.
 
 ## 주요 기능
 - 현재 걸음 수 표시
-- 목표 걸음 수 설정 및 표시
+- 목표 걸음(1000보) 표시
 - 목표 달성까지 남은 걸음 수 표시
 - 매일 자정 걸음 수 초기화
-- 필요한 권한 요청 및 관리
+- 필요한 권한 요청
 
 ## 사용 기술
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
@@ -88,28 +88,21 @@ SDK 34 기준 아래와 같은 권한이 필요합니다.
 </p>
 <p>
   <img src="https://github.com/yeo-develop/stepCounter/assets/143160346/18178d5a-21d0-4e84-8c61-25b9d54654a3" width="200" height="400"/>
-  <em>foreground 상태에서도 잘 돌아가는 모습을 보여주며</em>
+  <em>foreground 상태에서 거리 적산을 하는 모습</em>
 </p>
 
 <p>
   <img src="https://github.com/yeo-develop/stepCounter/assets/143160346/597390a5-664c-4f7c-b521-37b09be0f2e0" width="200" height="400"/>
-  <em>background 상태에서도 거리 적산이 잘 되는 모습입니다.</em>
+  <em>background 상태에서 거리 적산을 하는 모습</em>
 </p>
 
 
 <p>
   <img src="https://github.com/yeo-develop/stepCounter/assets/143160346/893cb068-e6ac-4b65-a67f-761f0a7a6351" width="200" height="400"/>
-  <em>자정마다 걸음 값을 초기화하며,</em>
-</p>
-
-
-
-<p>
-  <img src="https://github.com/yeo-develop/stepCounter/assets/143160346/893cb068-e6ac-4b65-a67f-761f0a7a6351" width="200" height="400"/>
-  <em>자정마다 걸음 값을 초기화하며,</em>
+  <em>자정마다 걸음 값을 초기화 하는 모습</em>
 </p>
 
 <p>
   <img src="https://github.com/yeo-develop/stepCounter/assets/143160346/020b09fc-bf69-48c9-8d0c-eda418f1f3cf" width="800" height="400"/>
-  <em>전날 걸었던 걸음 값은 DB에 잘 저장되어 있습니다.</em>
+  <em>전날 걸었던 걸음 값은 DB에 적산됨.</em>
 </p>
