@@ -22,6 +22,7 @@ import com.yeo.develop.stepcounter.activities.MainActivity
 import com.yeo.develop.stepcounter.database.steps.StepDao
 import com.yeo.develop.stepcounter.database.steps.StepDataEntity
 import com.yeo.develop.stepcounter.datastore.AppDataStore
+import com.yeo.develop.stepcounter.worker.MidnightWorkerScheduler
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +46,9 @@ class StepCounterService : Service(), SensorEventListener {
     @Inject
     lateinit var appDataStore: AppDataStore
 
+    @Inject
+    lateinit var midnightWorkerScheduler: MidnightWorkerScheduler
+
     private val sensorManager by lazy {
         getSystemService(SENSOR_SERVICE) as SensorManager
     }
@@ -53,7 +57,7 @@ class StepCounterService : Service(), SensorEventListener {
         DateTimeFormatter.ofPattern(ApplicationConstants.ENTITY_DATE_FORMAT)
 
     /**
-     * onSensorChanged 에서 콜백이 들어올때마다 값을 db를 업데이트하기엔 잦은 I/O작업으로 부하가 들것이라 판단, 10초간 적산 후 db를 갱신하는 식으로 처리합니다.
+     * onSensorChanged 에서 콜백이 들어올때마다 값을 db를 업데이트하기엔 잦은 I/O작업으로 부하가 들것이라 판단, 5초간 적산 후 db를 갱신하는 식으로 처리합니다.
      * */
     private var accumulateStepJob: Job? = null
 
@@ -63,12 +67,17 @@ class StepCounterService : Service(), SensorEventListener {
      * */
     private val lock = Any()
 
-    //10초간 들어온 값을 누적할 스토리지 변수입니다.
+    //5초간 들어온 값을 누적할 스토리지 변수입니다.
     private var accumulatedSteps: Int = 0
     override fun onCreate() {
         super.onCreate()
         Log.d("YDW", "Service Start!")
         createNotificationChannel()
+
+        /**
+         * 자정이 지나면 dailyStepsCount를 초기화하도록 스케쥴링합니다.
+         * */
+        midnightWorkerScheduler.scheduleAlarm()
 
         /**
          * 센서가 존재하지 않는경우엔 서비스를 종료합니다.
@@ -78,7 +87,7 @@ class StepCounterService : Service(), SensorEventListener {
 
             accumulateStepJob = CoroutineScope(Dispatchers.IO).launch {
                 while (isActive) {
-                    delay(10_000L)
+                    delay(5_000L)
                     synchronized(lock) {
                         Log.d("YDW", "UPDATE! $accumulatedSteps")
                         appDataStore.dailyTotalSteps += accumulatedSteps
@@ -126,8 +135,10 @@ class StepCounterService : Service(), SensorEventListener {
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent,
-            PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(
+            context, 0, intent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
 
         return NotificationCompat.Builder(context, STEP_COUNTER_SERVICE_CHANNEL_ID)
             .setContentTitle("걸음 수를 측정 하고 있어요!")
@@ -186,7 +197,6 @@ class StepCounterService : Service(), SensorEventListener {
         accumulateStepJob?.cancel()
         accumulateStepJob = null
     }
-
     companion object {
         private const val STEP_COUNTER_SERVICE_CHANNEL_ID = "StepCounterServiceChannelId"
     }

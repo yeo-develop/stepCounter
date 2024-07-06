@@ -13,7 +13,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DataStoreModule {
     @Provides
-    @Singleton
     fun provideAppDataStore(@ApplicationContext context: Context): AppDataStore =
         AppDataStore(context)
 }

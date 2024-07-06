@@ -18,6 +18,12 @@ class AppDataStore(private val context: Context) {
         set(value) {
             setDataSynchronously(KEY_DAILY_TOTAL_STEPS, value)
         }
+
+    val dailyTotalStepsFlow: Flow<Int?>
+        get() {
+            return getDataAsynchronously(KEY_DAILY_TOTAL_STEPS)
+        }
+
     companion object {
         /**
          * 애플리케이션이 시작된 이후부터 현재까지의 누적 걸음 수를 계산하기 위해 사용됩니다.
@@ -39,6 +45,7 @@ class AppDataStore(private val context: Context) {
         context.dataStore.data.map { preferences ->
             preferences[key]
         }
+
     private fun <T> setDataSynchronously(key: Preferences.Key<T>, value: T?) = runBlocking {
         setDataAsynchronously(key, value)
     }
