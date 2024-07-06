@@ -23,7 +23,6 @@ class MainActivity : ComponentActivity() {
     lateinit var workerScheduler: MidnightWorkerScheduler
 
     private val sdkVersionOverTiramisu = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-    private val sdkVersionOverS = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     private val sdkVersionOverQ = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,16 +49,8 @@ class MainActivity : ComponentActivity() {
         val requirePermissions = when {
             sdkVersionOverTiramisu -> arrayOf(
                 Manifest.permission.ACTIVITY_RECOGNITION,
-                Manifest.permission.POST_NOTIFICATIONS,
-                Manifest.permission.ACTIVITY_RECOGNITION
+                Manifest.permission.POST_NOTIFICATIONS
             )
-
-            sdkVersionOverS -> {
-                arrayOf(
-                    Manifest.permission.SCHEDULE_EXACT_ALARM,
-                    Manifest.permission.ACTIVITY_RECOGNITION
-                )
-            }
 
             sdkVersionOverQ -> arrayOf(
                 Manifest.permission.ACTIVITY_RECOGNITION,
