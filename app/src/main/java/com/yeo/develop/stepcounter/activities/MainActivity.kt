@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
 import com.yeo.develop.stepcounter.activities.screens.StepCounterScreen
 import com.yeo.develop.stepcounter.activities.viewmodel.MainViewModel
 import com.yeo.develop.stepcounter.services.StepCounterService
@@ -19,14 +17,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = , builder = )
             StepCounterScreen(
                 startButtonClicked = {
-                    startService(Intent(this, StepCounterService::class.java))
+                    startService(Intent(this@MainActivity, StepCounterService::class.java))
                 },
                 stopButtonClicked = {
-                    stopService(Intent(this, StepCounterService::class.java))
+                    stopService(Intent(this@MainActivity, StepCounterService::class.java))
                 }
             )
         }
@@ -36,4 +32,5 @@ class MainActivity : ComponentActivity() {
         super.onResume()
         viewModel.checkLocalVariableCurrentTime()
     }
+
 }
