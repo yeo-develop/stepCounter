@@ -113,7 +113,7 @@ SDK 34 기준 아래와 같은 권한이 필요합니다.
 </p>
 
 ### 2024.07.07 추가 업데이트
-데이터를 저장만 하고 표출만 하는건 의미가 없다 판단해 걷기 기록 기능을 추가하였습니다!
+데이터를 저장만 하고 표출을 하지 하는건 의미가 없다 판단해 걷기 기록 기능을 추가하였습니다!
 
 <p align="center">
   <img src="https://github.com/yeo-develop/stepCounter/assets/143160346/8d89df2a-62ab-42c4-9da7-29f0c9d0595e" width="200" height="400"/>
