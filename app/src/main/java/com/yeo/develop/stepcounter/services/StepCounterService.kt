@@ -19,8 +19,8 @@ import androidx.core.app.NotificationManagerCompat
 import com.yeo.develop.stepcounter.ApplicationConstants
 import com.yeo.develop.stepcounter.R
 import com.yeo.develop.stepcounter.activities.MainActivity
-import com.yeo.develop.stepcounter.database.steps.StepDao
 import com.yeo.develop.stepcounter.database.steps.StepDataEntity
+import com.yeo.develop.stepcounter.database.steps.reposittory.StepRepository
 import com.yeo.develop.stepcounter.datastore.AppDataStore
 import com.yeo.develop.stepcounter.worker.MidnightWorkerScheduler
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +41,7 @@ import javax.inject.Inject
 class StepCounterService : Service(), SensorEventListener {
 
     @Inject
-    lateinit var stepDao: StepDao
+    lateinit var stepRepository: StepRepository
 
     @Inject
     lateinit var appDataStore: AppDataStore
@@ -178,7 +178,7 @@ class StepCounterService : Service(), SensorEventListener {
     private suspend fun updateSteps(steps: Int) {
         updateNotification(steps)
         val today = LocalDate.now().format(entityTimeFormatter)
-        stepDao.insertOrUpdate(
+        stepRepository.insertOrUpdate(
             StepDataEntity(
                 targetDate = today,
                 steps = steps

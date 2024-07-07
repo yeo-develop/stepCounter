@@ -1,5 +1,7 @@
 package com.yeo.develop.stepcounter.database.steps.reposittory
 
+import androidx.room.Query
+import androidx.room.Transaction
 import com.yeo.develop.stepcounter.database.steps.StepDao
 import com.yeo.develop.stepcounter.database.steps.StepDataEntity
 import kotlinx.coroutines.flow.Flow
@@ -11,5 +13,9 @@ import javax.inject.Inject
 class StepRepository @Inject constructor(private val stepDao: StepDao) {
     fun getStepsHistory(): Flow<List<StepDataEntity>?> {
         return stepDao.getStepsHistoryListByFlow()
+    }
+
+    suspend fun insertOrUpdate(stepDataEntity: StepDataEntity) {
+        stepDao.insertOrUpdate(stepDataEntity)
     }
 }
