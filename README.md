@@ -38,34 +38,41 @@ com.yeo.devleop.stepcounter
 ├── activities
 │   ├── MainActivity.kt
 │   ├── screens
-│   │   └── StepCounterScreen.kt
+│   │   ├── StepCounterScreen.kt
+│   │   └── WalkingHistoryScreen.kt
 │   └── viewmodel
-│       └── StepCounterViewModel.kt
+│       ├── StepCounterViewModel.kt
+│       └── WalkingHistoryViewModel.kt
 ├── configs
 │   └── PermissionAllowanceStatus.kt
 ├── database
 │   └── steps
 │       ├── StepDao.kt
 │       ├── StepDataEntity.kt
-│       └── StepDatabase.kt
+│       ├── StepDatabase.kt
+│       └── reposittory
+│           └── StepsRepository.kt
 ├── datastore
 │   └── AppDataStore.kt
 ├── extensions
 │   └── ContextExtensions.kt
 ├── modules
 │   ├── DataStoreModule.kt
-│   └── DatabaseModule.kt
+│   ├── DatabaseModule.kt
+│   └── RepositoryModule.kt
 ├── services
 │   └── StepCounterService.kt
 ├── ui
 │   ├── ColorPalettes.kt
-│   └── Footer.kt
+│   ├── Footer.kt
+│   └── NavigationItem.kt
 └── worker
     ├── MidnightWorker.kt
     ├── MidnightWorkerFactory.kt
     ├── MidnightWorkerScheduler.kt
     └── alarm
         └── AlarmReceiver.kt
+
 
 ```
 
