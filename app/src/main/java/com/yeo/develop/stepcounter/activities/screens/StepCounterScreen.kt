@@ -37,11 +37,8 @@ import com.yeo.develop.stepcounter.ui.PrimaryBlue
 fun StepCounterScreen(
     viewModel: StepCounterViewModel = hiltViewModel()
 ) {
-    val currentSteps by viewModel.stepCounts.collectAsState()
-    val goalSteps by remember { mutableStateOf(1000) }
+    val uiState by viewModel.uiState.collectAsState()
 
-    val remainingSteps = goalSteps - currentSteps
-    val progress = currentSteps.toFloat() / goalSteps
 
     Column(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -58,7 +55,7 @@ fun StepCounterScreen(
             ) {
                 Text(text = "오늘 걸음 수", fontSize = 24.sp)
                 Text(
-                    text = currentSteps.toString(),
+                    text = uiState.stepCounts.toString(),
                     fontSize = 72.sp,
                     color = PrimaryBlue,
                     fontWeight = FontWeight.Bold
@@ -66,7 +63,7 @@ fun StepCounterScreen(
             }
             Spacer(modifier = Modifier.weight(1f))
             Slider(
-                value = progress,
+                value = uiState.progress,
                 onValueChange = {},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -94,7 +91,7 @@ fun StepCounterScreen(
                 Text(text = "나의 목표 걸음 수", fontSize = 22.sp, color = Color.White)
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = goalSteps.toString(),
+                        text = uiState.goalSteps.toString(),
                         color = Color.White,
                         fontSize = 64.sp,
                         fontWeight = FontWeight.Bold
@@ -116,10 +113,10 @@ fun StepCounterScreen(
                 ) {
                     Text(
                         text =
-                        if(remainingSteps <= 0 ) {
+                        if(uiState.remainingSteps <= 0 ) {
                             "오늘 걸음을 전부 달성했어요!"
                         }else {
-                            "목표 달성까지\n$remainingSteps 걸음 남았어요!"
+                            "목표 달성까지\n${uiState.remainingSteps} 걸음 남았어요!"
                         },
                         fontWeight = FontWeight.Bold,
                         color = PrimaryBlue,

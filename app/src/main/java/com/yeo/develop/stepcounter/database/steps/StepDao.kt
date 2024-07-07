@@ -26,6 +26,12 @@ interface StepDao {
     suspend fun getStepsByDate(date: String): Int?
 
     /**
+     * 전체 걸음값 조회를 위해 사용되는 쿼리입니다
+     * */
+    @Query("SELECT * FROM daily_step_data")
+    fun getStepsHistoryListByFlow(): Flow<List<StepDataEntity>?>
+
+    /**
      * 날짜가 바뀔경우, 신규설치 등의 사유로 데이터를 불러올 수 없을때를 대비합니다.
      **/
     @Transaction
