@@ -32,39 +32,41 @@ Jetpack Compose를 사용하여 UI를 구성하였으며, `TedPermission` 라이
 
 ## 계층 구조
 ```
-com.yeo.develop.stepcounter/
-├── activities/
-│ ├── screens/
-│ │ └── StepCounterScreen.kt
-│ ├── viewmodel/
-│ │ ├── StepCounterViewModel.kt
-│ │ └── MainActivity.kt
-├── configs/
-│ └── PermissionAllowanceStatus.kt
-├── database/
-│ └── steps/
-│ ├── StepDao.kt
-│ ├── StepDatabase.kt
-│ └── StepDataEntity.kt
-├── datastore/
-│ └── AppDataStore.kt
-├── extensions/
-├── modules/
-│ ├── DatabaseModule.kt
-│ └── DataStoreModule.kt
-├── services/
-│ └── StepCounterService.kt
-├── ui/
-│ ├── ColorPalettes.kt
-│ └── Footer.kt
-├── worker/
-│ ├── alarm/
-│ │ ├── AlarmReceiver.kt
-│ │ ├── MidnightWorker.kt
-│ │ ├── MidnightWorkerFactory.kt
-│ │ └── MidnightWorkerScheduler.kt
-│ ├── ApplicationConstants.kt
-│ └── MainApplication.kt
+com.yeo.devleop.stepcounter
+├── ApplicationConstants.kt
+├── MainApplication.kt
+├── activities
+│   ├── MainActivity.kt
+│   ├── screens
+│   │   └── StepCounterScreen.kt
+│   └── viewmodel
+│       └── StepCounterViewModel.kt
+├── configs
+│   └── PermissionAllowanceStatus.kt
+├── database
+│   └── steps
+│       ├── StepDao.kt
+│       ├── StepDataEntity.kt
+│       └── StepDatabase.kt
+├── datastore
+│   └── AppDataStore.kt
+├── extensions
+│   └── ContextExtensions.kt
+├── modules
+│   ├── DataStoreModule.kt
+│   └── DatabaseModule.kt
+├── services
+│   └── StepCounterService.kt
+├── ui
+│   ├── ColorPalettes.kt
+│   └── Footer.kt
+└── worker
+    ├── MidnightWorker.kt
+    ├── MidnightWorkerFactory.kt
+    ├── MidnightWorkerScheduler.kt
+    └── alarm
+        └── AlarmReceiver.kt
+
 ```
 
 ### 주요 기능
