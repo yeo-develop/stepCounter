@@ -93,4 +93,7 @@ dependencies {
 
     implementation ("androidx.hilt:hilt-work:1.2.0")
 
+    implementation ("androidx.navigation:navigation-compose:2.8.0-beta04")
+
+
 }
